@@ -25,4 +25,6 @@ int main()
     {
         cout << "El numero c = " << c << " es mayor a los demas" << endl;
     }
+
+    return 0;
 }
