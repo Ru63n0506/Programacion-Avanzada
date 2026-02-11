@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <iostream>
 
 void gotoxy(int x, int y)
 {
