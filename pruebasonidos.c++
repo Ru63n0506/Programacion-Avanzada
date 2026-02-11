@@ -96,8 +96,6 @@
             cout<<endl<<"Tamano exedido xd"<<endl;
             cout<<strlen(contr)<<endl;
         }
-
-        cout<<endl;
-
+        
         return 0;
     }
