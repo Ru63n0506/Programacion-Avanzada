@@ -18,8 +18,9 @@
     {
         paciente pacientes[10];
 
-        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1;
+        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc;
         char a,contr[100],contra1[9]="holahola";
+        string nombrebusc;
 
         for(i=0;i<30;i++)
         {
@@ -99,8 +100,6 @@
                     cout<<"3. Borrar"<<endl;
                     cout<<"4. Buscar"<<endl;
                     cout<<"5. Salir"<<endl;
-                    cout<<"Total:"<<total<<endl;
-                    cout<<"Contador:"<<contador<<endl;
                     cout<<"Ingresa la opcion:";
                     cin>>opc;
 
@@ -218,6 +217,75 @@
 
                             system("pause");
 
+                            break;
+
+                        case 4:
+
+                            cout<<"+-- Buscar --+"<<endl;
+
+                            cout<<"Por medio de que quieres buscar?"<<endl;
+                            cout<<"1. ID"<<endl;
+                            cout<<"2. Nombre"<<endl;
+                            cout<<"Ingresa tu eleccion:";
+                            cin>>opcbusc;
+
+                            switch(opcbusc)
+                            {
+                                case 1:
+
+                                    cout<<"Ingresa ID:";
+                                    cin>>idbuscbusc;
+
+                                    for(i=0;i<contador;i++)
+                                    {
+                                        if(pacientes[i].id==idbuscbusc)
+                                        {
+                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                            cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        }
+                                        else
+                                        {
+                                            cout<<"Paciente no encontrado!"<<endl;
+                                        }
+                                    }
+
+                                    break;
+
+                                case 2:
+
+                                    cout<<"Ingresa nombre:";
+                                    cin>>nombrebusc;
+
+                                    for(i=0;i<contador;i++)
+                                    {
+                                        if(pacientes[i].nombre==nombrebusc)
+                                        {
+                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                            cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        }
+                                        else
+                                        {
+                                            cout<<"Paciente no encontrado!"<<endl;
+                                        }
+                                    }
+                                
+                                    break;
+
+                                default:
+
+                                    cout<<"Gracias por ocupar este sistema!! Jsjsjs"<<endl;
+                                
+                                    break;
+                            }
+
+                            system("pause");
+                        
                             break;
 
                         default:
