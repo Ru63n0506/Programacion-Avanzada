@@ -18,7 +18,7 @@
     {
         paciente pacientes[10];
 
-        int i=0,tam=8,o=0;
+        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1;
         char a,contr[100],contra1[9]="holahola";
 
         for(i=0;i<30;i++)
@@ -55,7 +55,7 @@
             Beep(1000, 250);
         }
 
-        gotoxy(0,8);
+       /* gotoxy(0,8);
 
         cout<<"Cargando..."<<endl;
 
@@ -64,7 +64,7 @@
             cout<<"+";
             Sleep(30);
             Beep(50,500);
-        }
+        } */
 
         cout<<endl<<"Listo!"<<endl;
 
@@ -88,7 +88,149 @@
         {
             if(strcmp(contr,contra1)==0)
             {
-                cout<<endl<<endl<<"Bienvenido al menu!!"<<endl;
+                do
+                {
+                    system("cls");
+
+                    cout<<"Bienvenido al menu!!"<<endl;
+
+                    cout<<"1. Alta"<<endl;
+                    cout<<"2. Imprimir"<<endl;
+                    cout<<"3. Borrar"<<endl;
+                    cout<<"4. Buscar"<<endl;
+                    cout<<"5. Salir"<<endl;
+                    cout<<"Total:"<<total<<endl;
+                    cout<<"Contador:"<<contador<<endl;
+                    cout<<"Ingresa la opcion:";
+                    cin>>opc;
+
+                    switch(opc)
+                    {
+                        case 1:
+
+                            system("cls");
+
+                            cout<<"+-- Altas --+"<<endl;
+
+                            pacientes[contador].id=sigID;
+                            cout<<"ID: "<<pacientes[contador].id<<endl;
+
+                            cout<<"Nombre:";
+                            cin>>pacientes[contador].nombre;
+
+                            cout<<"Diagnostico:";
+                            cin>>pacientes[contador].diagnostico;
+
+                            cout<<"Pago:";
+                            cin>>pacientes[contador].pago;
+
+                            cout<<"Paciente ingresado correctamente!"<<endl;
+
+                            sigID++;
+                            total++;
+                            contador++;
+
+                            system("pause");
+
+                            break;
+
+                        case 2:
+
+                            system("cls");
+
+                            cout<<"+-- Imprimir --+"<<endl;
+
+                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                            
+                            for(i=0;i<total;i++)
+                            {
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                            }
+
+                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+
+                            system("pause");
+
+                            break;
+
+                        case 3:
+
+                            system("cls");
+
+                            cout<<"+-- Borrar --+"<<endl;
+
+                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                            
+                            for(i=0;i<total;i++)
+                            {
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                            }
+
+                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+
+                            cout<<endl<<"Ingresa el id que desees eliminar:";
+                            cin>>opcelim;
+
+                            for(i=0;i<contador;i++)
+                            {
+                                if(pacientes[i].id==opcelim)
+                                {
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                }
+                                else
+                                {
+                                    cout<<"Paciente no encontrado!"<<endl;
+                                }
+                            }
+
+                            cout<<"Estas seguro de querer eliminar este registro?"<<endl;
+                            cout<<"1. Si"<<endl;
+                            cout<<"2. No"<<endl;
+                            cout<<"Ingresa tu opcion:";
+                            cin>>opcelim2;
+
+                            if(opcelim2==1)
+                            {
+                                for(i=opcelim-1;i<contador-1;i++)
+                                {
+                                    pacientes[i].id=pacientes[i+1].id;
+                                    pacientes[i].nombre=pacientes[i+1].nombre;
+                                    pacientes[i].diagnostico=pacientes[i+1].diagnostico;
+                                    pacientes[i].pago=pacientes[i+1].pago;
+                                }
+
+                                total--;
+                                contador--;
+                                cout<<"Registro eliminado con exito!"<<endl;
+                            }
+                            else
+                            {
+                                cout<<"Operacion abortada!"<<endl;
+                            }
+
+                            system("pause");
+
+                            break;
+
+                        default:
+
+                            cout<<"Gracias por ocupar el sistema!"<<endl;
+                        
+                            break;
+                    }
+                }while(opc!=5);
+            }
+            else
+            {
+                cout<<"Contrasena incorrecta!"<<endl;
             } 
         }
         else
