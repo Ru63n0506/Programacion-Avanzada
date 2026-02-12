@@ -18,7 +18,7 @@
     {
         paciente pacientes[10];
 
-        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc;
+        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc,bandera,pos;
         char a,contr[100],contra1[9]="holahola";
         string nombrebusc;
 
@@ -56,7 +56,7 @@
             Beep(1000, 250);
         }
 
-       /* gotoxy(0,8);
+        gotoxy(0,8);
 
         cout<<"Cargando..."<<endl;
 
@@ -65,7 +65,7 @@
             cout<<"+";
             Sleep(30);
             Beep(50,500);
-        } */
+        }
 
         cout<<endl<<"Listo!"<<endl;
 
@@ -171,23 +171,34 @@
 
                             cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
 
-                            cout<<endl<<"Ingresa el id que desees eliminar:";
+                            cout<<"Ingresa el id que desees eliminar:";
                             cin>>opcelim;
 
                             for(i=0;i<contador;i++)
                             {
                                 if(pacientes[i].id==opcelim)
                                 {
-                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                    cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
-                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                    cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
-                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    bandera=1;
+                                    pos=i;
+                                    break;
                                 }
                                 else
                                 {
-                                    cout<<"Paciente no encontrado!"<<endl;
+                                    bandera=0;
                                 }
+                            }
+
+                            if(bandera==1)
+                            {
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| "<<pacientes[pos].id<<"  | "<<pacientes[pos].nombre<<"\t"<<" | "<<pacientes[pos].diagnostico<<"\t"<<"| "<<pacientes[pos].pago<<"\t"<<"|"<<endl;
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                            }
+                            else
+                            {
+                                cout<<"Paciente no encontrado!"<<endl;
                             }
 
                             cout<<"Estas seguro de querer eliminar este registro?"<<endl;
@@ -221,6 +232,8 @@
 
                         case 4:
 
+                            system("cls");
+
                             cout<<"+-- Buscar --+"<<endl;
 
                             cout<<"Por medio de que quieres buscar?"<<endl;
@@ -240,17 +253,30 @@
                                     {
                                         if(pacientes[i].id==idbuscbusc)
                                         {
-                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
-                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                            cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
-                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                            bandera=1;
+                                            pos=i;
+                                            break;
                                         }
                                         else
                                         {
-                                            cout<<"Paciente no encontrado!"<<endl;
+                                            bandera=0;
                                         }
                                     }
+
+                                    if(bandera==1)
+                                    {
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        cout<<"| "<<pacientes[pos].id<<"  | "<<pacientes[pos].nombre<<"\t"<<" | "<<pacientes[pos].diagnostico<<"\t"<<"| "<<pacientes[pos].pago<<"\t"<<"|"<<endl;
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    }
+                                    else
+                                    {
+                                        cout<<"Paciente no encontrado!"<<endl;
+                                    }
+
+                                    system("pause");
 
                                     break;
 
@@ -263,16 +289,27 @@
                                     {
                                         if(pacientes[i].nombre==nombrebusc)
                                         {
-                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
-                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                            cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
-                                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                            bandera=1;
+                                            pos=i;
+                                            break;
                                         }
                                         else
                                         {
-                                            cout<<"Paciente no encontrado!"<<endl;
+                                            bandera=0;
                                         }
+                                    }
+
+                                    if(bandera==1)
+                                    {
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        cout<<"| "<<pacientes[pos].id<<"  | "<<pacientes[pos].nombre<<"\t"<<" | "<<pacientes[pos].diagnostico<<"\t"<<"| "<<pacientes[pos].pago<<"\t"<<"|"<<endl;
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    }
+                                    else
+                                    {
+                                        cout<<"Paciente no encontrado!"<<endl;
                                     }
                                 
                                     break;
