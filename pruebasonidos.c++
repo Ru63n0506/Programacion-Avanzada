@@ -18,9 +18,9 @@
     {
         paciente pacientes[10];
 
-        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc,bandera,pos;
+        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc,bandera,pos,cambid,opscamb,nuevPag;
         char a,contr[100],contra1[9]="holahola";
-        string nombrebusc;
+        string nombrebusc,nuevNom,nuevDiag;
 
         for(i=0;i<30;i++)
         {
@@ -99,7 +99,8 @@
                     cout<<"2. Imprimir"<<endl;
                     cout<<"3. Borrar"<<endl;
                     cout<<"4. Buscar"<<endl;
-                    cout<<"5. Salir"<<endl;
+                    cout<<"5. Cambios"<<endl;
+                    cout<<"6. Salir"<<endl;
                     cout<<"Ingresa la opcion:";
                     cin>>opc;
 
@@ -325,13 +326,146 @@
                         
                             break;
 
+                        case 5:
+
+                            system("cls");
+
+                            cout<<"+-- Cambios --+"<<endl;
+
+                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                            
+                            for(i=0;i<total;i++)
+                            {
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                            }
+
+                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+
+                            cout<<"Ingresa el ID que desees modificar:";
+                            cin>>cambid;
+
+                            for(i=0;i<contador;i++)
+                            {
+                                if(pacientes[i].id==cambid)
+                                {
+                                    bandera=1;
+                                    pos=i;
+                                    break;
+                                }
+                                else
+                                {
+                                    bandera=0;
+                                }
+                            }
+
+                            if(bandera==1)
+                            {
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                cout<<"| "<<pacientes[pos].id<<"  | "<<pacientes[pos].nombre<<"\t"<<" | "<<pacientes[pos].diagnostico<<"\t"<<"| "<<pacientes[pos].pago<<"\t"<<"|"<<endl;
+                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                            }
+                            else
+                            {
+                                cout<<"Paciente no encontrado!"<<endl;
+                            }
+   
+                            cout<<"1.Nombre"<<endl;
+                            cout<<"2.Diagnostico"<<endl;
+                            cout<<"3.Pago"<<endl;
+                            cout<<"Que deseas modificiar?"<<endl;
+                            cin>>opscamb;
+
+                            switch(opscamb)
+                            {
+                                case 1:
+
+                                    cout<<"Nuevo nombre:"<<endl;
+                                    cin>>nuevNom;
+
+                                    cout<<"Estas seguro de querer modificar este dato?"<<endl;
+                                    cout<<"1. Si"<<endl;
+                                    cout<<"2. No"<<endl;
+                                    cout<<"Ingresa tu opcion:";
+                                    cin>>opcelim2;
+
+                                    if(opcelim2==1)
+                                    {
+                                        pacientes[pos].nombre=nuevNom;
+                                        cout<<"Registro modificado con exito!"<<endl;
+                                    }
+                                    else
+                                    {
+                                        cout<<"Operacion abortada!"<<endl;
+                                    }
+
+                                    break;
+
+                                case 2:
+
+                                    cout<<"Nuevo diagnostico:"<<endl;
+                                    cin>>nuevDiag;
+
+                                    cout<<"Estas seguro de querer modificar este dato?"<<endl;
+                                    cout<<"1. Si"<<endl;
+                                    cout<<"2. No"<<endl;
+                                    cout<<"Ingresa tu opcion:";
+                                    cin>>opcelim2;
+
+                                    if(opcelim2==1)
+                                    {
+                                        pacientes[pos].diagnostico=nuevDiag;
+                                        cout<<"Registro modificado con exito!"<<endl;
+                                    }
+                                    else
+                                    {
+                                        cout<<"Operacion abortada!"<<endl;
+                                    }
+
+                                    break;
+
+                                case 3:
+
+                                    cout<<"Nuevo pago:"<<endl;
+                                    cin>>nuevPag;
+
+                                    cout<<"Estas seguro de querer modificar este dato?"<<endl;
+                                    cout<<"1. Si"<<endl;
+                                    cout<<"2. No"<<endl;
+                                    cout<<"Ingresa tu opcion:";
+                                    cin>>opcelim2;
+
+                                    if(opcelim2==1)
+                                    {
+                                        pacientes[pos].pago=nuevPag;
+                                        cout<<"Registro modificado con exito!"<<endl;
+                                    }
+                                    else
+                                    {
+                                        cout<<"Operacion abortada!"<<endl;
+                                    }
+                                
+                                    break;
+
+                                default:
+
+                                    cout<<"Gracias!"<<endl;
+
+                                    break;
+                            }
+                            
+                            break;
+
                         default:
 
                             cout<<"Gracias por ocupar el sistema!"<<endl;
                         
                             break;
                     }
-                }while(opc!=5);
+                }while(opc!=6);
             }
             else
             {
