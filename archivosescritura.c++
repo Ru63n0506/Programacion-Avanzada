@@ -5,30 +5,32 @@ using namespace std;
 
 int main()
 {
-    FILE *fd;
+    ofstream archivo;
+
     char nombre[20];
     int edad;
 
-    fd=fopen("prueba.txt","w");
+    archivo.open("prueba.txt");
 
-    if(fd==NULL)
+    if(!archivo)
     {
         cout<<"No se pudo crear el archivo"<<endl;
-    }
-    else
-    {
-        cout<<"Se creo correctamente"<<endl;
+        return 1;
     }
 
+    cout<<"Se creo correctamente"<<endl;
+
     cout<<"Proporciona el nombre:";
-    cin.getline(nombre,20,'\n');
-    fprintf(fd,"%s",nombre);
+    cin.getline(nombre,20);
+
+    archivo<<nombre<<endl;
 
     cout<<"Proporciona la edad:";
     cin>>edad;
-    fprintf(fd,"%i",edad);
 
-    fclose(fd);
+    archivo<<edad<<endl;
+
+    archivo.close();
 
     return 0;
 }

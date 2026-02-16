@@ -3,6 +3,7 @@
     #include <windows.h>
     #include <conio.h>
     #include <C:\Users\Lorena Reyes\OneDrive\Escritorio\PROGRAMAS\PRUEBA\Programacion-Avanzada\cuadro.h>
+    #include <fstream>
 
     using namespace std;
 
@@ -18,9 +19,11 @@
     {
         paciente pacientes[10];
 
-        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc,bandera,pos,cambid,opscamb,nuevPag;
+        int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc,bandera,pos,cambid,opscamb,nuevPag,id,pago,opclist;
         char a,contr[100],contra1[9]="holahola";
-        string nombrebusc,nuevNom,nuevDiag;
+        string nombrebusc,nuevNom,nuevDiag,nombre,diagnostico;
+        ofstream archivoesc;
+        ifstream archivolec;
 
         for(i=0;i<30;i++)
         {
@@ -126,6 +129,23 @@
 
                             cout<<"Paciente ingresado correctamente!"<<endl;
 
+                            archivoesc.open("pacientes.txt",ios::app);
+
+                            if(!archivoesc)
+                            {
+                                cout<<"No se pudo crear el archivo"<<endl;
+                                return 1;
+                            }
+
+                            cout<<"Se creo correctamente"<<endl;
+
+                            archivoesc<<pacientes[contador].id<<" ";
+                            archivoesc<<pacientes[contador].nombre<<" ";
+                            archivoesc<<pacientes[contador].diagnostico<<" ";
+                            archivoesc<<pacientes[contador].pago<<endl;
+
+                            archivoesc.close();
+
                             sigID++;
                             total++;
                             contador++;
@@ -140,18 +160,59 @@
 
                             cout<<"+-- Imprimir --+"<<endl;
 
-                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                            cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
-                            
-                            for(i=0;i<total;i++)
+                            cout<<"1.Struct"<<endl;
+                            cout<<"2.Archivo"<<endl;
+
+                            cout<<"Desde donde deseas imprimir:";
+                            cin>>opclist;
+
+                            switch(opclist)
                             {
-                                cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-                                cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                                case 1:
+
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+                                    
+                                    for(i=0;i<total;i++)
+                                    {
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        cout<<"| "<<pacientes[i].id<<"  | "<<pacientes[i].nombre<<"\t"<<" | "<<pacientes[i].diagnostico<<"\t"<<"| "<<pacientes[i].pago<<"\t"<<"|"<<endl;
+                                    }
+
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+
+                                    system("pause");
+
+                                    break;
+
+                                case 2:
+
+                                    archivolec.open("pacientes.txt");
+
+                                    if(!archivolec)
+                                    {
+                                        cout<<"No se pudo abrir el archivo"<<endl;
+                                        system("pause");
+                                        break;
+                                    }
+
+                                    cout<<"Archivo correctamente abierto!"<<endl;
+
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                    cout<<"| ID |"<<" Nombre\t"<<" | "<<"Diagnostico\t"<<"|"<<" Pago  "<<"|"<<endl;
+
+                                    while(archivolec >> id >> nombre >> diagnostico >> pago)
+                                    {
+                                        cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+                                        cout<<"| "<<id<<"  | "<<nombre<<"\t"<<" | "<<diagnostico<<"\t"<<"| "<<pago<<"\t"<<"|"<<endl;
+                                    }
+                                
+                                    cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
+
+                                    system("pause");
+                                    
+                                    break;
                             }
-
-                            cout<<"+++++++++++++++++++++++++++++++++++++++++"<<endl;
-
-                            system("pause");
 
                             break;
 
