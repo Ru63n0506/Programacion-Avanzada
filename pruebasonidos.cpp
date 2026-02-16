@@ -20,77 +20,24 @@
         paciente pacientes[10];
 
         int i=0,tam=8,o=0,opc,contador=0,opcelim,opcelim2,total=0,sigID=1,opcbusc,idbusc,idbuscbusc,bandera,pos,cambid,opscamb,nuevPag,id,pago,opclist;
-        char a,contr[100],contra1[9]="holahola";
-        string nombrebusc,nuevNom,nuevDiag,nombre,diagnostico;
+        char a;
+        string nombrebusc,nuevNom,nuevDiag,nombre,diagnostico,contr,contra1="holahola";
         ofstream archivoesc;
         ifstream archivolec;
 
-        for(i=0;i<30;i++)
-        {
-            gotoxy(i,2);
-            cout<<"#";
-        }
+        marcoysonido();
 
-        for(i=0;i<30;i++)
-        {
-            gotoxy(i,6);
-            cout<<"#";
-        }
-
-        for(i=3;i<6;i++)
-        {
-            gotoxy(0,i);
-            cout<<"#";
-        }
-
-        for(i=3;i<6;i++)
-        {
-            gotoxy(29,i);
-            cout<<"#";
-        }
-
-        gotoxy(2,4);
-        cout<<"Programador: Ruben Carmona";
-
-        for(i=0;i<2;i++)
-        {
-            Beep(800, 120);
-            Beep(800, 120);
-            Beep(1000, 250);
-        }
-
-        gotoxy(0,8);
-
-        cout<<"Cargando..."<<endl;
-
-        for(i=0;i<15;i++)
-        {
-            cout<<"+";
-            Sleep(30);
-            Beep(50,500);
-        }
-
-        cout<<endl<<"Listo!"<<endl;
+        cargando();
 
         cout<<endl<<"Bienvenido al sistema"<<endl;
 
         cout<<"Ingresa la contra: ";
 
-        while(a!=13)
-        {
-            a=getch();
-            cout<<"*";
+        contr = contrasena();
 
-            if(a!=13)
-            {
-                contr[o]=a;
-                o++;
-            }
-        }
-
-        if(strlen(contr)<=tam)
+        if(contr.length()<=tam)
         {
-            if(strcmp(contr,contra1)==0)
+            if(contr==contra1)
             {
                 do
                 {
@@ -536,7 +483,7 @@
         else
         {
             cout<<endl<<"Tamano exedido xd"<<endl;
-            cout<<strlen(contr)<<endl;
+            cout<<contr.length()<<endl;
         }
         
         return 0;
