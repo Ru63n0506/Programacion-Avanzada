@@ -88,3 +88,16 @@ string contrasena()
 
     return contr;
 }
+
+void inicio()
+{
+    cout<<"Bienvenido al menu!!"<<endl;
+
+    cout<<"1. Alta"<<endl;
+    cout<<"2. Imprimir"<<endl;
+    cout<<"3. Borrar"<<endl;
+    cout<<"4. Buscar"<<endl;
+    cout<<"5. Cambios"<<endl;
+    cout<<"6. Salir"<<endl;
+    cout<<"Ingresa la opcion:";
+}
