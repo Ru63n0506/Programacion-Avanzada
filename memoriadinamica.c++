@@ -36,24 +36,57 @@ int main()
 
     cout<<"Imprimir pila->"<<endl;
 
-    proveedor *aux = pila;
+    proveedor *aux1 = pila;
 
-    while(aux!=NULL)
+    while(aux1!=NULL)
     {
         cout<<"Clave:";
-        cout<<aux->clave<<endl;
+        cout<<aux1->clave<<endl;
         cout<<"Nombre:";
-        cout<<aux->nombre<<endl;
+        cout<<aux1->nombre<<endl;
         cout<<"Articulo:";
-        cout<<aux->articulo<<endl;
+        cout<<aux1->articulo<<endl;
         cout<<"Precio:";
-        cout<<aux->precio<<endl;
+        cout<<aux1->precio<<endl;
 
-        aux=aux->sig;
+        aux1=aux1->sig;
     }
 
-    proveedor *prev=NULL;
+    int claelim;
 
+    cout<< "Eliminar dato ->"<<endl;
+
+    cout<< "Ingresa la clave que desees borrar:";
+    cin>>claelim;
+
+    proveedor *aux2 = NULL;
+
+    while(aux1 != NULL)
+    {
+        if(aux1->clave == claelim)
+        {
+            if(aux2 == NULL)
+            {
+                pila = aux1->sig;
+            }
+            else
+            {
+                aux2->sig = aux1->sig;
+            }
+
+            delete aux1;
+            cout << "Elemento eliminado correctamente." << endl;
+            break;
+        }
+
+        aux2 = aux1;
+        aux1 = aux1->sig;
+    }
+
+    if(aux1 == NULL)
+    {
+        cout << "No se encontró la clave." << endl;
+    }
     
     return 0;
 }
