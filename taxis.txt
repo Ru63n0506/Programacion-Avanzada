@@ -1,0 +1,18 @@
+Numero de Llegada: 1
+Placa: TRE43A
+Nombre del Chofer: Bette
+Fecha: 18/3/2026
+Hora: 9:28:51
+
+Numero de Llegada: 2
+Placa: GFD43A
+Nombre del Chofer: Ruben
+Fecha: 18/3/2026
+Hora: 9:29:7
+
+Numero de Llegada: 3
+Placa: BVC43A
+Nombre del Chofer: Damian Ramos
+Fecha: 18/3/2026
+Hora: 9:29:16
+
