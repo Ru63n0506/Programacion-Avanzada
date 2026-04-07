@@ -27,6 +27,7 @@ int main()
 
     cout<<"Proporciona la edad:";
     cin>>edad;
+    cin.ignore();
 
     archivo<<edad<<endl;
 
