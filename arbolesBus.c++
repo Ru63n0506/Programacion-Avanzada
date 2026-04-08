@@ -37,12 +37,12 @@ autobus* crearNodo(int nViaje)
 
     ofstream archivo;
 
-    archivo.open("camiones.txt");
+    archivo.open("camiones.txt",ios::app);
 
     if(!archivo)
     {
         cout<<"No se pudo crear el archivo"<<endl;
-        return;
+        return NULL;
     }
 
     cout<<"Se creo correctamente"<<endl;
@@ -79,16 +79,25 @@ autobus* insertar(autobus* raiz, int nViaje)
     return raiz;
 }
 
-int buscar(autobus* raiz, int bViaje)
+autobus* buscar(autobus* raiz, int bViaje)
 {
     if(raiz==NULL)
     {
-        return 0;
+        return NULL;
     }
     
     if(raiz->numViaje==bViaje)
     {
-        return 1;
+        cout<<"+- Bus Encontrado -+"<<endl;
+        cout<<"----------------"<<endl;
+        cout<<"Numero de viaje: "<<raiz->numViaje<<endl;
+        cout<<"Destino: "<<raiz->destino<<endl;
+        cout<<"Hora de salida: "<<raiz->horaSal<<endl;
+        cout<<"Nombre del chofer: "<<raiz->nomChofer<<endl;
+        cout<<"Numero de anden: "<<raiz->numAnden<<endl;
+        cout<<"----------------"<<endl;
+            
+        return raiz;
     }
 
     if(bViaje<raiz->numViaje)
@@ -101,15 +110,160 @@ int buscar(autobus* raiz, int bViaje)
     }
 }
 
+autobus* minimo(autobus* raiz)
+{
+    while(raiz->izquierda!=NULL)
+    {
+        raiz=raiz->izquierda;
+    }
+    return raiz;
+}
+
+autobus* eliminar(autobus* raiz, int elimViaje)
+{
+    if(raiz==NULL)
+    {
+        return raiz;
+    }
+
+    if(elimViaje<raiz->numViaje)
+    {
+        raiz->izquierda=eliminar(raiz->izquierda,elimViaje);
+    }
+    else if(elimViaje>raiz->numViaje)
+    {
+        raiz->derecha=eliminar(raiz->derecha,elimViaje);
+    }
+    else
+    {
+        if(raiz->izquierda==NULL && raiz->derecha==NULL)
+        {
+            delete raiz;
+            return NULL;
+        }
+        else if(raiz->izquierda==NULL)
+        {
+            autobus* temp = raiz->derecha;
+            delete raiz;
+            return temp;
+        }
+        else if(raiz->derecha==NULL)
+        {
+            autobus* temp = raiz->izquierda;
+            delete raiz;
+            return temp;
+        }
+
+        autobus* temp=minimo(raiz->derecha);
+
+        raiz->numViaje=temp->numViaje;
+        raiz->destino=temp->destino;
+        raiz->horaSal=temp->horaSal;
+        raiz->nomChofer=temp->nomChofer;
+        raiz->numAnden=temp->numAnden;
+        
+        raiz->derecha=eliminar(raiz->derecha, temp->numViaje);
+    }               
+    return raiz;
+}
+
+autobus* modificar(autobus* raiz, int modViajeViejo)
+{
+    autobus* encontrado = buscar(raiz,modViajeViejo);
+    
+    if(encontrado != NULL)
+    {
+        int opcMod;
+
+        cout<<"+-- Modificar Autobus --+"<<endl;
+        cout<<"1. Destino"<<endl;
+        cout<<"2. Hora"<<endl;
+        cout<<"3. Chofer"<<endl;
+        cout<<"4. Anden"<<endl;
+        cout<<"+-----------------------+"<<endl;
+        cout<<"Ingresa una opcion: ";
+        cin>>opcMod;
+        cin.ignore();
+
+        switch(opcMod)
+        {
+            case 1:
+
+                cout<<"Ingresa el nuevo destino:";
+                getline(cin,encontrado->destino);
+                cout<<"Destino modificado exitosamente!"<<endl;
+
+                break;
+
+            case 2:
+
+                cout<<"Ingresa la nueva hora (HH:MM:SS):";
+                getline(cin,encontrado->horaSal);
+                cout<<"Hora modificada exitosamente!"<<endl;
+
+                break;
+
+            case 3:
+
+                cout<<"Ingresa el nuevo nombre del chofer:";
+                getline(cin,encontrado->nomChofer);
+                cout<<"Chofer modificado exitosamente!"<<endl;
+
+                break;
+
+            case 4:
+
+                cout<<"Ingresa el nuevo numero de anden:";
+                cin>>encontrado->numAnden;
+                cout<<"Numero de anden modificado correctamente!"<<endl;
+
+                break;
+
+            default:
+
+                cout<<"De nada vuelva prontooo!"<<endl;
+
+                break;
+        }
+    }
+    else
+    {
+        cout<<"Autobus no encontrado"<<endl;
+    }
+
+    return raiz;
+}
+
+void imprimir(autobus* raiz)
+{
+    if(raiz==NULL)
+    {
+        return;
+    }
+
+    imprimir(raiz->izquierda);
+
+    cout<<"-------------------"<<endl;
+    cout<<"Numero de Viaje:"<<raiz->numViaje<<endl;
+    cout<<"Hora de Salida:"<<raiz->horaSal<<endl;
+    cout<<"Destino:"<<raiz->destino<<endl;
+    cout<<"Chofer:"<<raiz->nomChofer<<endl;
+    cout<<"Anden:"<<raiz->numAnden<<endl;
+    
+    imprimir(raiz->derecha);
+}
+
 int main()
 {
-    int opc,nViaje,bViaje;
+    int opc,nViaje,bViaje,modViajeViejo,elimViaje;
     string dest,nChofer;
 
     autobus* raiz=NULL;
 
     do
     {
+        system("cls");
+
         cout<<"+-- Ruta --+"<<endl;
         cout<<"1. Alta de viaje"<<endl;
         cout<<"2. Buscar viaje"<<endl;
@@ -125,38 +279,70 @@ int main()
         {
             case 1:
 
+                system("cls");
+
                 cout<<"+-- Alta de Viaje --+"<<endl;
                 cout<<"Ingrese el numero de viaje:";
                 cin>>nViaje;
+                cin.ignore();
                 raiz=insertar(raiz,nViaje);
+
+                system("pause");
 
                 break;
 
             case 2:
 
+                system("cls");
+
                 cout<<"+-- Buscar Viaje --+"<<endl;
                 cout<<"Ingrese el numero de viaje a buscar:";
                 cin>>bViaje;
-                if(buscar(raiz,bViaje))
-                {
-                    cout<<"Autobus encontrado!"<<endl;
-                }
-                else
+                cin.ignore();
+                if(!buscar(raiz,bViaje))
                 {
                     cout<<"Autobus no encontrado!"<<endl;
                 }
+
+                system("pause");
 
                 break;
 
             case 3:
 
+                system("cls");
+
+                cout<<"+-- Modificar Viaje --+"<<endl;
+                cout<<"Ingresa el numero de viaje a modificar:";
+                cin>>modViajeViejo;
+                raiz=modificar(raiz,modViajeViejo);
+
+                system("pause");
+
                 break;
 
             case 4:
 
+                system("cls");
+
+                cout<<"+-- Eliminar Viaje --+"<<endl;
+                cout<<"Ingresa el numero de viaje que quieras eliminar:";
+                cin>>elimViaje;
+                raiz=eliminar(raiz,elimViaje);
+                cout<<"Viaje eliminado con exito!"<<endl;
+
+                system("pause");
+
                 break;
 
             case 5:
+
+                system("cls");
+
+                cout<<"+-- Imprimir Viajes --+"<<endl;
+                imprimir(raiz);
+
+                system("pause");
 
                 break;
 
@@ -168,12 +354,6 @@ int main()
         }
 
     } while (opc!=6);
-    
-
-    time_t ahora = time(0);
-    tm* tiempo = localtime(&ahora);
-    
-    cout<<"Hola"<<tiempo->tm_hour<<":"<<tiempo->tm_min<<":"<<tiempo->tm_sec<<endl;
 
     return 0;
 }

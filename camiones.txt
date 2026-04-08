@@ -1,0 +1,21 @@
+----------------
+Numero de viaje: 10
+Destino: Juquila
+Hora de salida: 0:57:22
+Nombre del chofer: Pablo Reyes Mendoza
+Numero de anden: 1
+----------------
+----------------
+Numero de viaje: 5
+Destino: Oaxaca de Juarez
+Hora de salida: 0:57:49
+Nombre del chofer: Pedro Perez Perez
+Numero de anden: 2
+----------------
+----------------
+Numero de viaje: 15
+Destino: Chachalacas Veracruz
+Hora de salida: 0:58:15
+Nombre del chofer: Filemon Gonzales Tellez
+Numero de anden: 3
+----------------
